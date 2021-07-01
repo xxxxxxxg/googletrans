@@ -31,7 +31,7 @@ var (
 	// ErrNotFound couldn't found tkk
 	ErrNotFound = errors.New("couldn't found tkk from google translation url")
 
-	tkkRegexp = regexp.MustCompile(`tkk:'(\d+\.\d+)'`)
+	tkkRegexp = regexp.MustCompile(`tkk='(\d+\.\d+)'`)
 )
 
 // Cache is responsible for getting google translte tkk
@@ -101,6 +101,8 @@ func (t *tkkCache) isvalid() bool {
 	return true
 }
 
+const tkkPath = "/translate_a/element.js"
+
 // update gets tkk from t.u
 func (t *tkkCache) update() (string, error) {
 	// only one goroutine is allowed to obtain the update token at the same time
@@ -133,7 +135,7 @@ func (t *tkkCache) update() (string, error) {
 	)
 	for time.Now().Sub(start) < timeout {
 		t.v, err = func() (string, error) {
-			req, err := http.NewRequest(http.MethodGet, t.u, nil)
+			req, err := http.NewRequest(http.MethodGet, t.u+tkkPath, nil)
 			if err != nil {
 				return "", err
 			}
