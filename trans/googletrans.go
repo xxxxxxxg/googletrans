@@ -1,4 +1,4 @@
-package googletrans
+package trans
 
 import (
 	"bytes"
@@ -12,9 +12,9 @@ import (
 	"text/scanner"
 	"time"
 
-	"github.com/mind1949/googletrans/tk"
-	"github.com/mind1949/googletrans/tkk"
-	"github.com/mind1949/googletrans/transcookie"
+	"github.com/xxxxxxxg/googletrans/tk"
+	"github.com/xxxxxxxg/googletrans/tkk"
+	"github.com/xxxxxxxg/googletrans/transcookie"
 )
 
 const (
